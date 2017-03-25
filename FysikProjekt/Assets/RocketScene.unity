@@ -516,14 +516,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2f7387160592045aeb7085a7b433ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelPower: 1
-  hullMass: 1
-  fuelMass: 1
   exhaustUi: {fileID: 883227635}
   hullMassUi: {fileID: 1905040239}
   fuelMasstUi: {fileID: 49635418}
   velocityUi: {fileID: 1149353429}
   alltitudeUi: {fileID: 1893325403}
+  m_startVelocity: 0
+  m_exhaustVelocity: 2050
+  m_fuelMass: 400
+  m_hullMass: 400
+  m_engineMass: 0
+  m_propellantBurnRate: 0.5
 --- !u!4 &1051299915
 Transform:
   m_ObjectHideFlags: 0
