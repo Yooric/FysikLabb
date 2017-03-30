@@ -765,12 +765,12 @@ MonoBehaviour:
   velocityUi: {fileID: 1149353429}
   alltitudeUi: {fileID: 1893325403}
   m_startVelocity: 0
-  m_exhaustVelocity: 2050
+  m_exhaustVelocity: 3500
   m_fuelMass: 392400
   m_hullMass: 20000
   m_engineMass: 8371
   m_propellantBurnRate: 2616
-  m_velGainScale: 1
+  m_velGainScale: 10
 --- !u!4 &1051299915
 Transform:
   m_ObjectHideFlags: 0

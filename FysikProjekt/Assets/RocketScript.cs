@@ -85,8 +85,16 @@ public class RocketScript : MonoBehaviour
     void HandleGravity()
     {
         // a * t = v.  a = 9.81*(re^2/(re+h)^2)
-       //if (m_currentMass > m_hullMass)
-       //{
+        //if (m_currentMass > m_hullMass)
+        //{
+        float earthradiusSquared = Mathf.Pow(m_earthRadius, 2);
+        float distancefromEarthCoreSquared = Mathf.Pow(m_earthRadius + m_distanceFromEarthSurface, 2);
+        double earthradSqrddbl = (double)Mathf.Pow(m_earthRadius, 2);
+        double distanceearthcoreSqrddbl = (double)Mathf.Pow(m_earthRadius + m_distanceFromEarthSurface, 2);
+
+        double adbl = earthradSqrddbl / distanceearthcoreSqrddbl * 9.81;
+        float a = earthradiusSquared / distancefromEarthCoreSquared * 9.81f;
+
         m_currentVelocity -= (9.81f * (Mathf.Pow(m_earthRadius, 2) / (Mathf.Pow(m_earthRadius + m_distanceFromEarthSurface, 2)))) * Time.deltaTime * m_velGainScale;
         //}
         //else
