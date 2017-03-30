@@ -10,12 +10,15 @@ public class RocketScript : MonoBehaviour
     public Text fuelMasstUi;
     public Text velocityUi;
     public Text alltitudeUi;
+    public Text gravity;
+    public Text escapeVelocity;
+    public Text escapeVeloReached;
 
     //rocket stuff
     private float m_currentVelocity;
     public float m_startVelocity = 0f;
     public float m_exhaustVelocity = 2050;
-
+    public bool m_escVeloReached = false;
     //public float m_fuelMass = 392400f;
     //public float m_hullMass = 20000f;
     //public float m_engineMass = 8371f;
@@ -39,6 +42,8 @@ public class RocketScript : MonoBehaviour
         velocityUi.text = "Velocity: " + m_currentVelocity.ToString() + " m/s";
         fuelMasstUi.text = "Fuel mass: " + m_fuelMass.ToString() + " kg";
         alltitudeUi.text = "Alltitude: " + m_distanceFromEarthSurface.ToString() + " m";
+        gravity.text = "g: " + 9.81;
+        escapeVelocity.text = "Escape velocity: " + 10;
 
         m_startMass = m_fuelMass + m_hullMass + m_engineMass;
         m_currentMass = m_startMass;
@@ -51,6 +56,14 @@ public class RocketScript : MonoBehaviour
         if (UpdateRocketMass())
         {
             HandleVelocity();
+        }
+        if(m_escVeloReached)
+        {
+            escapeVeloReached.text = "Escape velocity reached";
+        }
+        if (!m_escVeloReached)
+        {
+            escapeVeloReached.text = "";
         }
         HandleGravity();
         UpdateRocketPosition();
