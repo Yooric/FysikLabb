@@ -770,6 +770,7 @@ MonoBehaviour:
   m_hullMass: 20000
   m_engineMass: 8371
   m_propellantBurnRate: 2616
+  m_velGainScale: 1
 --- !u!4 &1051299915
 Transform:
   m_ObjectHideFlags: 0
