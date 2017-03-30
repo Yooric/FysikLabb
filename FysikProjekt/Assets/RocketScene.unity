@@ -155,8 +155,8 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Escape velocity
 --- !u!222 &16611968
@@ -917,11 +917,12 @@ MonoBehaviour:
   escapeVeloReached: {fileID: 1875168986}
   m_startVelocity: 0
   m_exhaustVelocity: 3500
+  m_escVeloReached: 0
   m_fuelMass: 392400
   m_hullMass: 20000
   m_engineMass: 8371
   m_propellantBurnRate: 2616
-  m_velGainScale: 10
+  m_velGainScale: 1
 --- !u!4 &1051299915
 Transform:
   m_ObjectHideFlags: 0
