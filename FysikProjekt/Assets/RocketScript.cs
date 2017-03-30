@@ -29,6 +29,7 @@ public class RocketScript : MonoBehaviour
     private float m_earthRadius = 6356766.0f;
     //public float m_propellantBurnRate = 2616f; //kg/s (F-1 Engine stats from book)
     public float m_propellantBurnRate = 0.5f;
+    public float m_velScale = 0.01f;
     // Use this for initialization
     void Start()
     {
@@ -48,7 +49,7 @@ public class RocketScript : MonoBehaviour
 
         if (UpdateRocketMass())
         {
-            HandleThrust();
+            HandleVelocity();
         }
         HandleGravity();
         UpdateRocketPosition();
@@ -57,7 +58,6 @@ public class RocketScript : MonoBehaviour
         velocityUi.text = "Velocity: " + m_currentVelocity.ToString() + " m/s";
         fuelMasstUi.text = "Fuel mass: " + m_fuelMass.ToString() + " kg";
         alltitudeUi.text = "Alltitude: " + m_distanceFromEarthSurface.ToString() + " m";
-        m_currentVelocity = 0f;
     }
     
     bool UpdateRocketMass()
@@ -65,7 +65,7 @@ public class RocketScript : MonoBehaviour
         // if rocketmass is larger than hullmass we still have fuel to burn
         if (m_currentMass > m_hullMass)
         {
-            m_currentMass = m_currentMass - m_propellantBurnRate * Time.deltaTime * 100f;
+            m_currentMass = m_currentMass - m_propellantBurnRate * Time.deltaTime * (1/m_velScale);
             return true;
         }
         else
@@ -77,18 +77,25 @@ public class RocketScript : MonoBehaviour
 
     void UpdateRocketPosition()
     {
-        transform.position = new Vector3(0, transform.position.y + m_currentVelocity, 0);
+        transform.position = new Vector3(0, transform.position.y + (m_currentVelocity * m_velScale), 0);
         // might seem a little odd to update this variable but it makes the code easier to read in HandleGravity()
-        m_distanceFromEarthSurface = transform.position.y;
+        m_distanceFromEarthSurface = transform.position.y* (1/m_velScale);
     }
     void HandleGravity()
     {
         // a * t = v.  a = 9.81*(re^2/(re+h)^2)
-        m_currentVelocity -= (9.81f * (Mathf.Pow(m_earthRadius, 2) / (Mathf.Pow(m_earthRadius + m_distanceFromEarthSurface, 2))))* Time.deltaTime * 100f;
+        if (m_currentMass > m_hullMass)
+        {
+            m_currentVelocity -= (9.81f * (Mathf.Pow(m_earthRadius, 2) / (Mathf.Pow(m_earthRadius + m_distanceFromEarthSurface, 2)))) * Time.deltaTime * (1 / m_velScale);
+        }
+        else
+        {
+            m_currentVelocity -= (9.81f * (Mathf.Pow(m_earthRadius, 2) / (Mathf.Pow(m_earthRadius + m_distanceFromEarthSurface, 2)))) * Time.deltaTime;
+        }
     }
-    void HandleThrust()
+    void HandleVelocity()
     {
         // v(t) = v0 + ve * ln(m0/m(t))
-        m_currentVelocity += m_startVelocity + m_exhaustVelocity * Mathf.Log(m_startMass / m_currentMass);
+        m_currentVelocity = m_startVelocity + m_exhaustVelocity * Mathf.Log(m_startMass / m_currentMass);
     }
 }
