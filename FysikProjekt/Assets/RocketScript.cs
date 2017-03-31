@@ -78,7 +78,7 @@ public class RocketScript : MonoBehaviour
         fuelMasstUi.text = "Fuel mass: " + m_fuelMass.ToString() + " kg";
         alltitudeUi.text = "Alltitude: " + m_distanceFromEarthSurface.ToString() + " m";
 
-        escapeVelocity.text = "Escape velocity: " + m_escapeVelocity.ToString() + " m";
+        escapeVelocity.text = "Escape velocity: " + m_escapeVelocity.ToString();
 
     }
     
