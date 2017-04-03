@@ -918,7 +918,7 @@ MonoBehaviour:
   m_startVelocity: 0
   m_exhaustVelocity: 3500
   m_escVeloReached: 0
-  m_fuelMass: 392400
+  m_fuelMass: 419900
   m_hullMass: 20000
   m_engineMass: 8371
   m_propellantBurnRate: 2616

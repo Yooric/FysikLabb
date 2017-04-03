@@ -101,7 +101,8 @@ public class RocketScript : MonoBehaviour
     {
         transform.position = new Vector3(0, transform.position.y + (m_currentVelocity * m_worldScale), 0);
         // might seem a little odd to update this variable but it makes the code easier to read in HandleGravity()
-        m_distanceFromEarthSurface = transform.position.y* (1/ m_worldScale);
+        //m_distanceFromEarthSurface = transform.position.y* (1/ m_worldScale);
+        m_distanceFromEarthSurface = m_distanceFromEarthSurface + m_currentVelocity * Time.deltaTime;
     }
     void EscapeVelocity()
     {
